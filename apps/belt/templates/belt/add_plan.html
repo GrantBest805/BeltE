@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Belt Exam</title>
+  </head>
+  <body>
+    <a href="{% url 'my_show' %}">Home</a>
+    <a href="{% url 'my_index' %}">Logout</a>
+    {% for message in messages %}
+    <h5>{{message}}</h5> {% endfor %}
+    <h1>Add a Trip</h1>
+    <form action="{% url 'my_trip' %}" method="POST">
+      {% csrf_token %}
+      <lable for="destination">
+          Destination:
+          <input type="text" name="destination">
+      </lable>
+      <lable for="description">
+          Description:
+          <input type="text" name="description">
+      </lable>
+      <lable for="trip_start">
+          Travel Date From:
+          <input type="date" name="trip_start">
+      </lable>
+
+      <lable for="trip_finish">
+          Travel Date To:
+          <input type="date" name="trip_finish">
+      </lable>
+      <button>Add</button>
+
+    </form>
+
+
+  </body>
+</html>

@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Belt Review</title>
+</head>
+
+<body>
+    <style>
+    table {
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+
+    table, th, td {
+      border: 1px solid black;
+    }
+    </style>
+    <div class="header">
+        <a href="{% url 'my_index' %}">Logout</a>
+        <h2>Welcome: {{request.session.user_first_name}}</h2>
+        <h4>Your Trip Schedules</h4>
+        <table>
+          <tr>
+            <th>Destination</th>
+            <th>Travel Start Date</th>
+            <th>Travel End Date</th>
+            <th>Plan</th>
+          </tr>
+
+          {% for t in user_trips %}
+          <tr>
+            <td><a href="destination/{{t.id}}">{{t.destination}}</a></td>
+            <td>{{t.trip_start}}</td>
+            <td>{{t.trip_finish}}</td>
+            <td>{{t.description}}</td>
+            {% endfor %}
+          </tr>
+          {% for t in all_trips %}
+          <tr>
+            <td><a href="destination/{{t.id}}">{{t.destination}}</a></td>
+            <td>{{t.trip_start}}</td>
+            <td>{{t.trip_finish}}</td>
+            <td>{{t.description}}</td>
+            {% endfor %}
+
+          </tr>
+
+        </table>
+        <table>
+          <tr>
+            <th>Name</th>
+            <th>Destination</th>
+            <th>Travel Start Date</th>
+            <th>Travel End Date</th>
+            <th>Do You Want to Join?</th>
+          </tr>
+          {% for o in others_trips %}
+          <tr>
+            <td>{{o.user_id.first_name}}</td>
+            <td><a href="destination/{{o.id}}">{{o.destination}}</a></td>
+            <td>{{o.trip_start}}</td>
+            <td>{{o.trip_finish}}</td>
+            <td><a href="join/{{o.id}}">Join</a></td>
+            {% endfor %}
+          </tr>
+        </table>
+        {% for message in messages %}
+        <h5>{{message}}</h5> {% endfor %}
+        <a href="{% url 'my_plan' %}">Add a Travel Plan</a>
+
+
+
+</body>
+
+</html>

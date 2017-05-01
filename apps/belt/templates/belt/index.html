@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Belt Reviewer</title>
+</head>
+
+<body>
+    <style>
+        lable {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+    </style>
+    {% for message in messages %}
+    <h5>{{message}}</h5> {% endfor %}
+
+    <form action="/register" method="POST">
+        <h2>Register</h2> {% csrf_token %}
+        <lable for="first_name">
+            First Name
+            <input type="text" name="first_name">
+        </lable>
+        <lable for="last_name">
+            Last Name
+            <input type="text" name="last_name">
+        </lable>
+        <lable for="email">
+            Email
+            <input type="email" name="email">
+        </lable>
+        <lable for="password">
+            Password
+            <input type="password" name="password">
+        </lable>
+        <lable for="confirm">
+            Confirm Password
+            <input type="password" name="confirm">
+        </lable>
+        <button>Register</button>
+    </form>
+    <form action="/login" method="POST">
+        <h2>Login</h2> {% csrf_token %}
+        <lable for="email">
+            Email
+            <input type="email" name="email">
+        </lable>
+        <lable for="password">
+            Password
+            <input type="password" name="password">
+        </lable>
+        <button>Login</button>
+    </form>
+   
+</body>
+
+</html>
